@@ -1,14 +1,12 @@
 package com.github.rirfanuddin.pdfmanipulation.service.impl;
 
-import com.github.rirfanuddin.pdfmanipulation.service.PdfService;
+import com.github.rirfanuddin.pdfmanipulation.service.AddPhotoToPdfService;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.springframework.stereotype.Service;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -16,11 +14,10 @@ import java.io.IOException;
  * @author rirfanuddin
  */
 @Service
-public class PdfServiceImpl implements PdfService {
+public class AddPhotoToPdfServiceImpl implements AddPhotoToPdfService {
     @Override
     public void createPdfFromImage(String input, String photo, String output) throws IOException {
-        try (PDDocument doc = PDDocument.load(new File(input)))
-        {
+        try (PDDocument doc = PDDocument.load(new File(input))) {
             //we will add the image to the first page.
             PDPage page = doc.getPage(0);
 
@@ -29,8 +26,7 @@ public class PdfServiceImpl implements PdfService {
             // call LosslessFactory.createFromImage() instead
             PDImageXObject pdImage = PDImageXObject.createFromFile(photo, doc);
 
-            try (PDPageContentStream contentStream = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.APPEND, true, true))
-            {
+            try (PDPageContentStream contentStream = new PDPageContentStream(doc, page, PDPageContentStream.AppendMode.APPEND, true, true)) {
                 // contentStream.drawImage(ximage, 20, 20 );
                 // better method inspired by http://stackoverflow.com/a/22318681/535646
                 // reduce this value if the image is too large

@@ -5,7 +5,7 @@ import java.io.IOException;
 /**
  * @author rirfanuddin
  */
-public interface PdfService {
+public interface AddPhotoToPdfService {
 
     void createPdfFromImage(String input, String photo, String output) throws IOException;
 
